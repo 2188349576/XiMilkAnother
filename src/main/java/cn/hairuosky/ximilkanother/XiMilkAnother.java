@@ -25,6 +25,7 @@ public final class XiMilkAnother extends JavaPlugin implements Listener {
     private String milkBucketName;
     private String messagePrefix;
     private int cooldownSeconds;
+    private double damageChance; // 新增的扣血概率
 
     // 消息
     private String messageCooldown;
@@ -44,6 +45,7 @@ public final class XiMilkAnother extends JavaPlugin implements Listener {
         milkBucketName = config.getString("milk-bucket-name", "%target%的奶");
         messagePrefix = config.getString("message-prefix", "[MilkPlugin]");
         cooldownSeconds = config.getInt("cooldown-seconds", 10);
+        damageChance = config.getDouble("damage-chance", 0.5); // 读取扣血概率
 
         // 读取自定义消息
         messageCooldown = config.getString("messages.cooldown", "你必须等待 %time% 秒后才能再次挤奶。");
@@ -110,18 +112,33 @@ public final class XiMilkAnother extends JavaPlugin implements Listener {
                     player.sendMessage(messagePrefix + " " + messageMilkSuccess.replace("%target%", targetPlayer.getName()));
                     if (debugMode) getLogger().info("已添加 " + targetPlayer.getName() + " 的奶 到 " + player.getName() + " 的物品栏。");
 
-                    DustOptions dustOptions = new DustOptions(org.bukkit.Color.fromRGB(255, 255, 255), 1.0F);
+                    // 生成白色粒子效果
+                    DustOptions whiteDustOptions = new DustOptions(org.bukkit.Color.fromRGB(255, 255, 255), 1.0F);
                     targetPlayer.getWorld().spawnParticle(
                             Particle.REDSTONE,
                             targetPlayer.getLocation(),
                             10,
                             0.5, 0.5, 0.5,
                             0.1,
-                            dustOptions
+                            whiteDustOptions
                     );
 
-                    targetPlayer.damage(damageAmount);
-                    if (debugMode) getLogger().info("对 " + targetPlayer.getName() + " 造成了 " + damageAmount + " 点伤害。");
+                    // 基于概率扣血并生成红色粒子效果
+                    if (new Random().nextDouble() <= damageChance) {
+                        targetPlayer.damage(damageAmount);
+                        if (debugMode) getLogger().info("对 " + targetPlayer.getName() + " 造成了 " + damageAmount + " 点伤害。");
+
+                        // 生成红色粒子效果
+                        DustOptions redDustOptions = new DustOptions(org.bukkit.Color.fromRGB(255, 0, 0), 1.0F);
+                        targetPlayer.getWorld().spawnParticle(
+                                Particle.REDSTONE,
+                                targetPlayer.getLocation(),
+                                10,
+                                0.5, 0.5, 0.5,
+                                0.1,
+                                redDustOptions
+                        );
+                    }
 
                     // 更新玩家的最后挤奶时间
                     cooldowns.put(playerUUID, currentTime);
