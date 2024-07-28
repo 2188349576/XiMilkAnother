@@ -1,0 +1,4 @@
+name: XiMilkAnother
+version: '${project.version}'
+main: cn.hairuosky.ximilkanother.XiMilkAnother
+api-version: '1.16'

@@ -1,0 +1,6 @@
+milk-chance: 0.5
+damage-amount: 1.0
+debug-mode: false
+milk-bucket-name: "%target%的奶"
+message-prefix: "[XiMilkAnother]"
+cooldown-seconds: 10

@@ -1,0 +1,4 @@
+name: XiMilkAnother
+version: '1.0-SNAPSHOT'
+main: cn.hairuosky.ximilkanother.XiMilkAnother
+api-version: '1.16'

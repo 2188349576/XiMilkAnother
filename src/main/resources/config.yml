@@ -1,0 +1,11 @@
+milk-chance: 1.0
+damage-amount: 1.0
+debug-mode: false
+milk-bucket-name: "%target%的奶"
+message-prefix: "[MilkPlugin]"
+cooldown-seconds: 10
+damage-chance: 0.5 # 扣血的概率，0.0 到 1.0 之间
+messages:
+  cooldown: "你必须等待 %time% 秒后才能再次挤奶。"
+  milk-success: "你从 %target% 挤了一桶奶！"
+  milk-fail: "你未能成功挤到奶。"
