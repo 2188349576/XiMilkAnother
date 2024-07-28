@@ -2,3 +2,15 @@ name: XiMilkAnother
 version: '1.0-SNAPSHOT'
 main: cn.hairuosky.ximilkanother.XiMilkAnother
 api-version: '1.16'
+commands:
+  ximilkanother:
+    description: 重载指令
+    usage: /ximilkanother <reload>
+    aliases:
+      - xma
+      - ximilk
+      - xim
+    permission: ximilkanother.reload
+permissions:
+  ximilkanother.reload:
+    default: op

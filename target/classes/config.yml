@@ -1,11 +1,20 @@
 milk-chance: 1.0
 damage-amount: 1.0
 debug-mode: false
-milk-bucket-name: "%target%的奶"
-message-prefix: "[MilkPlugin]"
+milk-bucket-name: "&e&l%target%&2的奶"
+message-prefix: "&7[&eXiMilkAnother&7]"
 cooldown-seconds: 10
 damage-chance: 0.5 # 扣血的概率，0.0 到 1.0 之间
 messages:
-  cooldown: "你必须等待 %time% 秒后才能再次挤奶。"
-  milk-success: "你从 %target% 挤了一桶奶！"
-  milk-fail: "你未能成功挤到奶。"
+  cooldown: "&2你必须等待 &e&l%time% &2秒后才能再次挤奶。"
+  milk-success: "&2你从 &e&l%target% &2挤了一桶奶！"
+  milk-fail: "&4你未能成功挤到奶。"
+  consume: "&2你喝下了特殊的奶，获得了药水效果"
+# 药水效果设置
+potion-effects:
+  - type: SPEED
+    duration: 1200    # 60秒（1分钟）的持续时间，以ticks为单位，20 ticks = 1秒
+    amplifier: 1       # 效果等级
+  - type: RESISTANCE
+    duration: 1200    # 60秒（1分钟）的持续时间，以ticks为单位
+    amplifier: 0       # 效果等级
